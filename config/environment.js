@@ -6,6 +6,7 @@ module.exports = function(environment) {
     environment: environment,
     baseURL: '/',
     locationType: 'auto',
+    apiURL: 'http://127.0.0.1:9090',
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
@@ -23,7 +24,7 @@ module.exports = function(environment) {
     'default-src': "'none'",
     'script-src': "'self' https://maxcdn.bootstrapcdn.com https://code.jquery.com",
     'font-src': "'self' https://maxcdn.bootstrapcdn.com",
-    'connect-src': "'self'",
+    'connect-src': "'self' " + ENV.apiURL,
     'img-src': "'self'",
     'style-src': "'self' 'unsafe-inline' https://maxcdn.bootstrapcdn.com", // Allow inline styles and loaded CSS from http://fonts.googleapis.com 
     'media-src': "'self'"
@@ -36,7 +37,7 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
     ENV.contentSecurityPolicy['script-src'] += " http://127.0.0.1:35729";
-    ENV.contentSecurityPolicy['connect-src'] += " ws://127.0.0.1:35729 http://127.0.0.1:9090";
+    ENV.contentSecurityPolicy['connect-src'] += " ws://127.0.0.1:35729";
   }
 
   if (environment === 'test') {

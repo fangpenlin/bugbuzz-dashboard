@@ -1,5 +1,19 @@
 <h2>Session {{model.id}}</h2>
 
+<div class="btn-group" role="group">
+  <button id="command-continue" class="btn btn-default" data-toggle="tooltip" title="Continue" {{action "continue"}}>
+    <i class="fa fa-play-circle"></i>
+  </button>
+
+  <button id="command-next" class="btn btn-default" data-toggle="tooltip" title="Next line" {{action "next"}}>
+    <i class="fa fa-long-arrow-down"></i>
+  </button>
+
+  <button id="command-step" class="btn btn-default" data-toggle="tooltip" title="Next step" {{action "step"}}>
+    <i class="fa fa-level-up fa-rotate-90"></i>
+  </button>
+</div>
+
 {{outlet}}
 
 {{log model}}
