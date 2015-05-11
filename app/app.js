@@ -13,6 +13,10 @@ App = Ember.Application.extend({
   Resolver: Resolver
 });
 
+App.pubnub = PUBNUB.init({
+  subscribe_key: config.pubnubSubscribeKey
+});
+
 loadInitializers(App, config.modulePrefix);
 
 export default App;

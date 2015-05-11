@@ -22,9 +22,9 @@ module.exports = function(environment) {
 
   ENV.contentSecurityPolicy = {
     'default-src': "'none'",
-    'script-src': "'self' https://maxcdn.bootstrapcdn.com https://code.jquery.com",
+    'script-src': "'self' https://maxcdn.bootstrapcdn.com https://code.jquery.com https://cdn.pubnub.com",
     'font-src': "'self' https://maxcdn.bootstrapcdn.com",
-    'connect-src': "'self' " + ENV.apiURL,
+    'connect-src': "'self' http://*.pubnub.com " + ENV.apiURL,
     'img-src': "'self'",
     'style-src': "'self' 'unsafe-inline' https://maxcdn.bootstrapcdn.com", // Allow inline styles and loaded CSS from http://fonts.googleapis.com 
     'media-src': "'self'"
@@ -38,6 +38,8 @@ module.exports = function(environment) {
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
     ENV.contentSecurityPolicy['script-src'] += " http://127.0.0.1:35729";
     ENV.contentSecurityPolicy['connect-src'] += " ws://127.0.0.1:35729";
+
+    ENV.pubnubSubscribeKey = 'sub-c-740140b8-de7c-11e4-bb6f-0619f8945a4f';
   }
 
   if (environment === 'test') {

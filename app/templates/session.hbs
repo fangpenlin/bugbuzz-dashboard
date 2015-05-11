@@ -14,6 +14,12 @@
   </button>
 </div>
 
+<ul>
+{{#each break_ in model.breaks}}
+  <li>{{break_.file.filename}}:{{break_.lineno}}</li>
+{{/each}}
+</ul>
+
 {{outlet}}
 
 {{log model}}

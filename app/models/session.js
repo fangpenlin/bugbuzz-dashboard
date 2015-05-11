@@ -3,6 +3,8 @@ import DS from 'ember-data';
 import config from '../config/environment';
 
 export default DS.Model.extend({
+  files: DS.hasMany('file'),
+  breaks: DS.hasMany('break'),
   href: DS.attr('string'),
 
   next: function () {
