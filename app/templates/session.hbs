@@ -14,6 +14,11 @@
   </button>
 </div>
 
+Code:
+{{#each file in model.files}}
+  <pre>{{file.source_code}}</pre>
+{{/each}}
+
 <ul>
 {{#each break_ in model.breaks}}
   <li>{{break_.file.filename}}:{{break_.lineno}}</li>
