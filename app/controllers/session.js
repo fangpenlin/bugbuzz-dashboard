@@ -1,5 +1,4 @@
 import Ember from 'ember';
-import DS from 'ember-data';
 import app from '../app';
 
 export default Ember.Controller.extend({
@@ -8,7 +7,7 @@ export default Ember.Controller.extend({
     app.pubnub.subscribe({
         channel: this.get('model.id'),
         message: function(message){
-          console.log(message)
+          console.log(message);
           this.store.find('break', message['break']['id']).then(function (break_) {
             return break_.get('file');
           }).then(function (file) {
