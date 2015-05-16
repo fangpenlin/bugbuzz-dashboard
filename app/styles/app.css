@@ -6,3 +6,15 @@ body {
     padding-top: 0px;
   }
 }
+
+.ember-highlight-line-numbers {
+  list-style: none;
+  width: 3em;
+  margin: 0;
+  padding: 0.5em;
+  float: left;
+  line-height: 1.42857143;
+  font-size: 13px;
+  border-width: 1px;
+  text-align: right;
+}

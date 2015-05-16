@@ -24,4 +24,16 @@ app.import('bower_components/bootstrap/dist/css/bootstrap.css.map', {
   destDir: 'assets'
 });
 
+app.import('vendor/highlight.js/styles/' + 'monokai_sublime' + '.css');
+app.import('vendor/highlight.js/index.js', {
+  exports: {
+    'highlight.js': [
+      'default',
+      'highlight',
+      'highlightAuto',
+      'highlightBlock'
+    ]
+  }
+});
+
 module.exports = app.toTree();

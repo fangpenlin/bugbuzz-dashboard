@@ -7,7 +7,12 @@ export default Ember.Controller.extend({
     app.pubnub.subscribe({
         channel: this.get('model.id'),
         message: function(message){
-          console.log(message);
+          /*
+          var modelName = 'break';
+          this.store.push(
+            modelName,
+            this.store.normalize(modelName, message[modelName])
+          );*/
           this.store.find('break', message['break']['id']).then(function (break_) {
             return break_.get('file');
           }).then(function (file) {

@@ -3,9 +3,27 @@ import DS from 'ember-data';
 import config from '../config/environment';
 
 export default DS.Model.extend({
-  files: DS.hasMany('file'),
-  breaks: DS.hasMany('break'),
+  files: DS.hasMany('file',{ async:true }),
+  breaks: DS.hasMany('break',{ async:true }),
   href: DS.attr('string'),
+
+  last_break: Ember.computed('breaks', function () {
+    var promise = this.get('breaks').then(function (breaks) {
+      // TODO: what if no break available?
+      return breaks.objectAt(breaks.length - 1);
+    });
+    return  DS.PromiseObject.create({ promise: promise });
+  }),
+
+  last_file: Ember.computed('last_break', function () {
+    var promise = this.get('last_break').then(function (break_) {
+      if (!break_) {
+        return break_;
+      }
+      return break_.get('file');
+    });
+    return  DS.PromiseObject.create({ promise: promise });
+  }),
 
   next: function () {
     this._command('next');
