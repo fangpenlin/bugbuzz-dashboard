@@ -18,29 +18,35 @@ export default Ember.Controller.extend({
   }.observes('model'),
 
   lastBreakChanged: function() {
-    this.get('model.lastBreak').then(function (break_) {
-      var lineno = break_.get('lineno');
-      var style = document.getElementById('global-style');
-      console.log('!!! lineno', lineno);
-      /* Notice: this is a little bit hacky, it's hard (or slow) to modify a
-      line span in Ember JS, so we insert a global style here
-      */
-      if (style.sheet.rules.length) {
-        style.sheet.deleteRule(0);
-      }
-      var rule = (
-      '#line-%@ { ' +
-      '  background-color: green;' +
-      '  width: 100%;' +
-      '  display: inline-block;' +
-      '}').fmt(lineno);
-      style.sheet.insertRule(rule, 0);
-      //style.sheet.insertRule('body { background-color: red; }'.fmt(lineno), 0);
-      //Ember.$('' + lineno).addClass('line-highlight');
-    });
+    this.get('model.lastBreak').then(function () {
+      Ember.run.scheduleOnce('afterRender', this, this.afterRenderEvent);
+    }.bind(this));
   }.observes('model.lastBreak'),
 
+  lastFileChanged: function () {
+    this.get('model.lastFile').then(function () {
+      Ember.run.scheduleOnce('afterRender', this, this.afterRenderEvent);
+    }.bind(this));
+  }.observes('model.lastFile'),
+
+  afterRenderEvent: function () {
+    $('.line-highlight').removeClass('line-highlight');
+    var lineno = this.get('model.lastBreak').get('lineno');
+    var currentLine = $('#line-%@'.fmt(lineno));
+    if (!currentLine.length) {
+      console.log('GG');
+      return;
+    }
+    currentLine.addClass('line-highlight');
+    $('html, body').animate({
+        scrollTop: currentLine.offset().top - ($(window).height() / 2)
+    }, 500);
+  },
+
   actions: {
+    returnFunction: function(){
+      this.get('model').returnFunc();
+    },
     next: function(){
       this.get('model').next();
     },

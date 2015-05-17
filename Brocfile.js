@@ -23,6 +23,7 @@ app.import('bower_components/bootstrap/dist/css/bootstrap.css');
 app.import('bower_components/bootstrap/dist/css/bootstrap.css.map', {
   destDir: 'assets'
 });
+app.import('bower_components/ember-shortcuts/ember-shortcuts.js');
 
 app.import('vendor/highlight.js/styles/' + 'monokai_sublime' + '.css');
 app.import('vendor/highlight.js/index.js', {

@@ -13,6 +13,7 @@
     "loader.js": "ember-cli/loader.js#3.2.0",
     "qunit": "~1.17.1",
     "pubnub": "~3.7.10",
-    "bootstrap": "~3.3.4"
+    "bootstrap": "~3.3.4",
+    "ember-shortcuts": "~0.0.2"
   }
 }

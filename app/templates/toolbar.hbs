@@ -2,10 +2,14 @@
   <a>{{fa-icon 'play-circle'}}</a>
 </li>
 
+<li id="command-return" data-toggle="tooltip" title="Return current function" {{action "returnFunction"}}>
+  <a>{{fa-icon 'long-arrow-left'}}</a>
+</li>
+
 <li id="command-next" data-toggle="tooltip" title="Next line" {{action "next"}}>
   <a>{{fa-icon 'long-arrow-down'}}</a>
 </li>
 
 <li id="command-step" data-toggle="tooltip" title="Next step" {{action "step"}}>
-  <a>{{fa-icon 'fa-level-up' rotate=90}}</a>
+  <a>{{fa-icon 'long-arrow-right'}}</a>
 </li>

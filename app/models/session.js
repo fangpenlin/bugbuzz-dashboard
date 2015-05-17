@@ -30,6 +30,9 @@ export default DS.Model.extend({
 
   currentCode: null,
 
+  returnFunc: function () {
+    this._command('return');
+  },
   next: function () {
     this._command('next');
   },

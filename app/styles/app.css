@@ -18,3 +18,9 @@ body {
   border-width: 1px;
   text-align: right;
 }
+
+.line-highlight {
+  background-color: green;
+  width: 100%;
+  display: inline-block;
+}
