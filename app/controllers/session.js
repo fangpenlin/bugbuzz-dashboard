@@ -30,15 +30,15 @@ export default Ember.Controller.extend({
   }.observes('model.lastFile'),
 
   afterRenderEvent: function () {
-    $('.line-highlight').removeClass('line-highlight');
+    Ember.$('.line-highlight').removeClass('line-highlight');
     var lineno = this.get('model.lastBreak').get('lineno');
-    var currentLine = $('#line-%@'.fmt(lineno));
+    var currentLine = Ember.$('#line-%@'.fmt(lineno));
     if (!currentLine.length) {
       return;
     }
     currentLine.addClass('line-highlight');
-    $('html, body').animate({
-        scrollTop: currentLine.offset().top - ($(window).height() / 2)
+    Ember.$('html, body').animate({
+        scrollTop: currentLine.offset().top - (Ember.$(window).height() / 2)
     }, 500);
   },
 

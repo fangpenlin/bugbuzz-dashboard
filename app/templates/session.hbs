@@ -2,10 +2,10 @@
 
 <div>
 {{#if model.lastBreak.isPending}}
-  <img src="ajax-loader.gif">
+  <img src="/assets/images/ajax-loader.gif">
 {{else}}
   {{#if model.lastFile.isPending}}
-    <img src="ajax-loader.gif">
+    <img src="/assets/images/ajax-loader.gif">
   {{else}}
     <h4>{{model.lastFile.filename}}</h4>
     {{highlight-js code=model.currentCode lang='python' hasLineNumbers=true}}

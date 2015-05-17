@@ -6,7 +6,6 @@ module.exports = function(environment) {
     environment: environment,
     baseURL: '/',
     locationType: 'auto',
-    apiURL: 'http://127.0.0.1:9090',
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
@@ -24,7 +23,7 @@ module.exports = function(environment) {
     'default-src': "'none'",
     'script-src': "'self'",
     'font-src': "'self' https://maxcdn.bootstrapcdn.com",
-    'connect-src': "'self' http://*.pubnub.com " + ENV.apiURL,
+    'connect-src': "'self' http://*.pubnub.com",
     'img-src': "'self'",
     'style-src': "'self' 'unsafe-inline'", // Allow inline styles and loaded CSS from http://fonts.googleapis.com 
     'media-src': "'self'"
@@ -36,6 +35,7 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
+    ENV.apiURL = 'http://127.0.0.1:9090';
     ENV.contentSecurityPolicy['script-src'] += " http://127.0.0.1:35729";
     ENV.contentSecurityPolicy['connect-src'] += " ws://127.0.0.1:35729";
 
@@ -55,8 +55,9 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-
+    ENV.apiURL = 'https://bugbuzz-api.herokuapp.com';
   }
 
+  ENV.contentSecurityPolicy['connect-src'] += ' ' + ENV.apiURL;
   return ENV;
 };
