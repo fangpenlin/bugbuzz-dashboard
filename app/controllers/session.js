@@ -7,17 +7,12 @@ export default Ember.Controller.extend({
     app.pubnub.subscribe({
         channel: this.get('model.id'),
         message: function(message){
-          /*
-          var modelName = 'break';
-          this.store.push(
-            modelName,
-            this.store.normalize(modelName, message[modelName])
-          );*/
-          this.store.find('break', message['break']['id']).then(function (break_) {
-            return break_.get('file');
-          }).then(function (file) {
-            console.log('File loaded!', file);
-          });
+          if ('file' in message) {
+            this.store.push('file', this.store.normalize('file', message['file']));
+          }
+          if ('break' in message) {
+            this.store.push('break', this.store.normalize('break', message['break']));
+          }
         }.bind(this)
     });
   }.observes('model'),
