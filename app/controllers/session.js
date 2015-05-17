@@ -34,7 +34,6 @@ export default Ember.Controller.extend({
     var lineno = this.get('model.lastBreak').get('lineno');
     var currentLine = $('#line-%@'.fmt(lineno));
     if (!currentLine.length) {
-      console.log('GG');
       return;
     }
     currentLine.addClass('line-highlight');
