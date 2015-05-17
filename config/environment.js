@@ -58,6 +58,7 @@ module.exports = function(environment) {
     ENV.apiURL = 'https://bugbuzz-api.herokuapp.com';
     ENV.locationType = 'hash';
     ENV.liveReload = false;
+    ENV.pubnubSubscribeKey = 'sub-c-9a1230f8-fcdd-11e4-a0a9-02ee2ddab7fe';
   }
 
   ENV.contentSecurityPolicy['connect-src'] += ' ' + ENV.apiURL;
