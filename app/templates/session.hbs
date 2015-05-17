@@ -14,15 +14,14 @@
   </button>
 </div>
 
-{{#if model.last_break.isPending}}
+{{#if model.lastBreak.isPending}}
   <img src="http://i639.photobucket.com/albums/uu116/pksjce/spiffygif_18x18.gif">
 {{else}}
-  {{#if model.last_file.isPending}}
+  {{#if model.lastFile.isPending}}
     <img src="http://i639.photobucket.com/albums/uu116/pksjce/spiffygif_18x18.gif">
   {{else}}
-    {{highlight-js code=model.last_file.source_code lang='python' hasLineNumbers=true}}
+    {{highlight-js code=model.lastFile.source_code lang='python' hasLineNumbers=true}}
   {{/if}}
-  <h1>{{model.last_break.lineno}}</h1>
 {{/if}}
 
 {{outlet}}

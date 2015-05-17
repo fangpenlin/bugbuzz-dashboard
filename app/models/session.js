@@ -7,7 +7,7 @@ export default DS.Model.extend({
   breaks: DS.hasMany('break',{ async:true }),
   href: DS.attr('string'),
 
-  last_break: Ember.computed('breaks', function () {
+  lastBreak: Ember.computed('breaks', function () {
     var promise = this.get('breaks').then(function (breaks) {
       // TODO: what if no break available?
       return breaks.objectAt(breaks.length - 1);
@@ -15,8 +15,8 @@ export default DS.Model.extend({
     return  DS.PromiseObject.create({ promise: promise });
   }),
 
-  last_file: Ember.computed('last_break', function () {
-    var promise = this.get('last_break').then(function (break_) {
+  lastFile: Ember.computed('lastBreak', function () {
+    var promise = this.get('lastBreak').then(function (break_) {
       if (!break_) {
         return break_;
       }

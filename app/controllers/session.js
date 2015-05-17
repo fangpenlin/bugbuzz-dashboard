@@ -22,6 +22,29 @@ export default Ember.Controller.extend({
     });
   }.observes('model'),
 
+  lastBreakChanged: function() {
+    var lastBreak = this.get('model.lastBreak').then(function (break_) {
+      var lineno = break_.get('lineno');
+      var style = document.getElementById('global-style');
+      console.log('!!! lineno', lineno);
+      /* Notice: this is a little bit hacky, it's hard (or slow) to modify a
+      line span in Ember JS, so we insert a global style here
+      */
+      if (style.sheet.rules.length) {
+        style.sheet.deleteRule(0);
+      }
+      var rule = (
+      '#line-%@ { ' +
+      '  background-color: green;' +
+      '  width: 100%;' +
+      '  display: inline-block;' +
+      '}').fmt(lineno)
+      style.sheet.insertRule(rule, 0);
+      //style.sheet.insertRule('body { background-color: red; }'.fmt(lineno), 0);
+      //Ember.$('' + lineno).addClass('line-highlight');
+    });
+  }.observes('model.lastBreak'),
+
   actions: {
     next: function(){
       this.get('model').next();
@@ -33,4 +56,4 @@ export default Ember.Controller.extend({
       this.get('model').resume();
     }
   }
-});
+  });
