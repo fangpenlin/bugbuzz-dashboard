@@ -56,6 +56,7 @@ module.exports = function(environment) {
 
   if (environment === 'production') {
     ENV.apiURL = 'https://bugbuzz-api.herokuapp.com';
+    ENV.locationType = 'hash';
   }
 
   ENV.contentSecurityPolicy['connect-src'] += ' ' + ENV.apiURL;
