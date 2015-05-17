@@ -21,7 +21,7 @@
   {{#if model.lastFile.isPending}}
     <img src="http://i639.photobucket.com/albums/uu116/pksjce/spiffygif_18x18.gif">
   {{else}}
-    {{model.lastFile.filename}}
+    <h4>{{model.lastFile.filename}}</h4>
     {{highlight-js code=model.currentCode lang='python' hasLineNumbers=true}}
   {{/if}}
 {{/if}}

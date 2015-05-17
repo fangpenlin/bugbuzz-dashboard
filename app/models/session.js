@@ -22,6 +22,7 @@ export default DS.Model.extend({
       }
       return break_.get('file').then(function (file) {
         this.set('currentCode', file.get('source_code'));
+        return file;
       }.bind(this));
     }.bind(this));
     return DS.PromiseObject.create({ promise: promise });
