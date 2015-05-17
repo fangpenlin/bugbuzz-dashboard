@@ -1,19 +1,5 @@
 <h2>Session {{model.id}}</h2>
 
-<div class="btn-group" role="group">
-  <button id="command-continue" class="btn btn-default" data-toggle="tooltip" title="Continue" {{action "resume"}}>
-    {{fa-icon 'play-circle'}}
-  </button>
-
-  <button id="command-next" class="btn btn-default" data-toggle="tooltip" title="Next line" {{action "next"}}>
-    {{fa-icon 'long-arrow-down'}}
-  </button>
-
-  <button id="command-step" class="btn btn-default" data-toggle="tooltip" title="Next step" {{action "step"}}>
-    {{fa-icon 'fa-level-up' rotate=90}}
-  </button>
-</div>
-
 <div>
 {{#if model.lastBreak.isPending}}
   <img src="http://i639.photobucket.com/albums/uu116/pksjce/spiffygif_18x18.gif">

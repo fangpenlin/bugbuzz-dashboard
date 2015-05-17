@@ -18,7 +18,7 @@ export default Ember.Controller.extend({
   }.observes('model'),
 
   lastBreakChanged: function() {
-    var lastBreak = this.get('model.lastBreak').then(function (break_) {
+    this.get('model.lastBreak').then(function (break_) {
       var lineno = break_.get('lineno');
       var style = document.getElementById('global-style');
       console.log('!!! lineno', lineno);
@@ -33,7 +33,7 @@ export default Ember.Controller.extend({
       '  background-color: green;' +
       '  width: 100%;' +
       '  display: inline-block;' +
-      '}').fmt(lineno)
+      '}').fmt(lineno);
       style.sheet.insertRule(rule, 0);
       //style.sheet.insertRule('body { background-color: red; }'.fmt(lineno), 0);
       //Ember.$('' + lineno).addClass('line-highlight');
