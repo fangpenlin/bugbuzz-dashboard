@@ -20,10 +20,14 @@ export default DS.Model.extend({
       if (!break_) {
         return break_;
       }
-      return break_.get('file');
-    });
-    return  DS.PromiseObject.create({ promise: promise });
+      return break_.get('file').then(function (file) {
+        this.set('currentCode', file.get('source_code'));
+      }.bind(this));
+    }.bind(this));
+    return DS.PromiseObject.create({ promise: promise });
   }),
+
+  currentCode: null,
 
   next: function () {
     this._command('next');

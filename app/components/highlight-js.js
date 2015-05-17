@@ -101,6 +101,7 @@ export default Ember.Component.extend({
     lines.forEach(function (line, index) {
       wrappedLines.push('<span id="line-%@">'.fmt(index + 1) + line + '</span>');
     });
-    return wrappedLines.join('\n');
+    var result = wrappedLines.join('\n');
+    return result;
   }).readOnly()
 });

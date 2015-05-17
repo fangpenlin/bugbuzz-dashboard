@@ -14,14 +14,17 @@
   </button>
 </div>
 
+<div>
 {{#if model.lastBreak.isPending}}
   <img src="http://i639.photobucket.com/albums/uu116/pksjce/spiffygif_18x18.gif">
 {{else}}
   {{#if model.lastFile.isPending}}
     <img src="http://i639.photobucket.com/albums/uu116/pksjce/spiffygif_18x18.gif">
   {{else}}
-    {{highlight-js code=model.lastFile.source_code lang='python' hasLineNumbers=true}}
+    {{model.lastFile.filename}}
+    {{highlight-js code=model.currentCode lang='python' hasLineNumbers=true}}
   {{/if}}
 {{/if}}
+</div>
 
 {{outlet}}
