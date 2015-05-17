@@ -10,7 +10,7 @@ function range(start, count) {
 
 // return tag opening string
 function tagOpen(tag) {
-  return '<%@ class="%@">'.fmt(tag.tagName.toLowerCase(), tag.className)
+  return '<%@ class="%@">'.fmt(tag.tagName.toLowerCase(), tag.className);
 }
 
 // return tag closing string
@@ -23,12 +23,12 @@ function splitLines(nodes) {
   var lines = [];
   var currentLine = [];
   var openingTags = [];
+
   var traverse = function (currentNodes) {
     var lastOpenTag;
     var tagPrefix = [];
     var tagSuffix = [];
     openingTags.forEach(function (tag) {
-      var tagName = tag.tagName.toLowerCase();
       tagPrefix.push(tagOpen(tag));
       tagSuffix.push(tagClose(tag));
     });
@@ -38,23 +38,24 @@ function splitLines(nodes) {
       lastOpenTag = openingTags[openingTags.length - 1];
       currentLine.push(tagOpen(lastOpenTag));
     }
+    var processLine = function (line) {
+      // we see a newline, flush current line
+      if (line.endsWith('\n')) {
+        currentLine.push(line.slice(0, line.length - 1));
+        // wrap current line with open tags
+        lines.push(currentLine.join('') + tagSuffix);
+        currentLine = [tagPrefix];
+      // this line has no newline, just buffer it
+      } else {
+        currentLine.push(line);
+      }
+    };
     for (var i = 0; i < currentNodes.length; i++) {
       var node = currentNodes[i];
       // text node
       if (node.nodeType === Node.TEXT_NODE) {
         var lineParts = node.textContent.match(/([^\n]*?)(\n|$)/g);
-        lineParts.forEach(function (line) {
-          // we see a newline, flush current line
-          if (line.endsWith('\n')) {
-            currentLine.push(line.slice(0, line.length - 1));
-            // wrap current line with open tags
-            lines.push(currentLine.join('') + tagSuffix);
-            currentLine = [tagPrefix];
-          // this line has no newline, just buffer it
-          } else {
-            currentLine.push(line);
-          }
-        });
+        lineParts.forEach(processLine);
       } else if (node.nodeType === Node.ELEMENT_NODE) {
         openingTags.push(node);
         traverse(node.childNodes, openingTags);
