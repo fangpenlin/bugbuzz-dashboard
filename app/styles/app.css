@@ -24,3 +24,10 @@ body {
   width: 100%;
   display: inline-block;
 }
+
+.current-file-name {
+  position: absolute;;
+  padding: 15px;
+  color: white;
+  font-size: 16px;
+}

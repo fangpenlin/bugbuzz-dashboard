@@ -7,10 +7,23 @@
   {{#if model.lastFile.isPending}}
     <img src="/assets/images/ajax-loader.gif">
   {{else}}
-    <h4>{{model.lastFile.filename}}</h4>
     {{highlight-js code=model.currentCode lang='python' hasLineNumbers=true}}
   {{/if}}
 {{/if}}
 </div>
 
 {{outlet}}
+
+<footer>
+  <div class="navbar navbar-inverse navbar-fixed-bottom">
+    <div class="container">
+      <div class="navbar-collapse collapse" id="footer-body">
+        {{#if model.lastFile.isPending}}
+          <img src="/assets/images/ajax-loader.gif">
+        {{else}}
+          <span class="current-file-name">{{model.lastFile.filename}} : {{model.lastBreak.lineno}}</span>
+        {{/if}}
+      </div>
+    </div>
+  </div>
+</footer>
