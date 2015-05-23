@@ -1,4 +1,5 @@
 import DS from 'ember-data';
+import { b64decode } from '../utils/base64';
 
 export default DS.Model.extend({
   breaks: DS.hasMany('break'),
@@ -7,6 +8,6 @@ export default DS.Model.extend({
   content: DS.attr('string'),
   
   source_code: function() {
-    return atob(this.get('content'));
+    return b64decode(this.get('content'));
   }.property('content')
 });

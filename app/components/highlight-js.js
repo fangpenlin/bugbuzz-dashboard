@@ -1,6 +1,10 @@
 import Ember from 'ember';
 import { highlight } from 'highlight.js';
 
+String.prototype.endsWith = function(suffix) {
+  return this.indexOf(suffix, this.length - suffix.length) !== -1;
+};
+
 function range(start, count) {
   return Array.apply(0, new Array(count))
     .map(function (element, index) {
