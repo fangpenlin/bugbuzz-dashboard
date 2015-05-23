@@ -1,5 +1,6 @@
 <!-- Sidebar -->
 <div id="sidebar-wrapper">
+  {{#unless model.lastBreak.isPending}}
   <table class="table variables-table">
     <thead>
       <tr>
@@ -8,72 +9,15 @@
       </tr>
     </thead>
     <tbody>
+      {{#each var in model.lastBreak.localVarsArray}}
       <tr>
-        <th scope="row">Foo</th>
-        <td>Mark</td>
+        <th scope="row">{{var.key}}</th>
+        <td>{{var.value}}</td>
       </tr>
-      <tr>
-        <th scope="row">bar</th>
-        <td>Jacob</td>
-      </tr>
-      <tr>
-        <th scope="row">yooo</th>
-        <td>Larry</td>
-      </tr>
-      <tr>
-        <th scope="row">yooo</th>
-        <td>Larry</td>
-      </tr>
-      <tr>
-        <th scope="row">yooo</th>
-        <td>Larry</td>
-      </tr>
-      <tr>
-        <th scope="row">yooo</th>
-        <td>Larry</td>
-      </tr>
-      <tr>
-        <th scope="row">yooo</th>
-        <td>Larry</td>
-      </tr>
-      <tr>
-        <th scope="row">yooo</th>
-        <td>Larry</td>
-      </tr>
-      <tr>
-        <th scope="row">yooo</th>
-        <td>Larry</td>
-      </tr>
-      <tr>
-        <th scope="row">yooo</th>
-        <td>Larry</td>
-      </tr>
-      <tr>
-        <th scope="row">yooo</th>
-        <td>Larry</td>
-      </tr>
-      <tr>
-        <th scope="row">yooo</th>
-        <td>Larry</td>
-      </tr>
-      <tr>
-        <th scope="row">yooo</th>
-        <td>Larry</td>
-      </tr>
-      <tr>
-        <th scope="row">yooo</th>
-        <td>Larry</td>
-      </tr>
-      <tr>
-        <th scope="row">yooo</th>
-        <td>Larry</td>
-      </tr>
-      <tr>
-        <th scope="row">yooo</th>
-        <td>Larry</td>
-      </tr>
+      {{/each}}
     </tbody>
   </table>
+  {{/unless}}
 </div>
 <!-- /#sidebar-wrapper -->
 
