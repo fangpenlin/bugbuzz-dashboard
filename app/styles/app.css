@@ -36,8 +36,8 @@ body {
 .source-code-wrapper {
   /* bottom navbar so that won't cover last few lines of code */
   margin-bottom: 60px;
-  margin-left: 300px;
-  width: calc(100% - 290px);
+  margin-left: 320px;
+  width: calc(100% - 330px);
 }
 
 .container {
@@ -50,7 +50,7 @@ body {
   position: fixed;
   left: 0;
   top: 51px;
-  width: 280px;
+  width: 300px;
   height: calc(100% - 10px);
   box-sizing: content-box;
   overflow-y: scroll;

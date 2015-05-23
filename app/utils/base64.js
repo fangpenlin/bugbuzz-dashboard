@@ -1,5 +1,3 @@
-"use strict";
-
 /*\
 |*|
 |*|  Base64 / binary data / UTF-8 strings utilities
