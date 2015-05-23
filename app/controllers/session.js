@@ -5,7 +5,7 @@ export default Ember.Controller.extend({
   modelChanged: function() {
     // TODO: unsubscribe
     app.pubnub.subscribe({
-        channel: this.get('model.id'),
+        channel: this.get('model.dashboard_channel'),
         message: function(message){
           if ('file' in message) {
             this.store.push('file', this.store.normalize('file', message['file']));
