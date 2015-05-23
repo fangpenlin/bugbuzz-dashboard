@@ -19,12 +19,14 @@ export default Ember.Controller.extend({
 
   lastBreakChanged: function() {
     this.get('model.lastBreak').then(function () {
+      // TODO: avoid delay issue, cancel outdate schedule
       Ember.run.scheduleOnce('afterRender', this, this.afterRenderEvent);
     }.bind(this));
   }.observes('model.lastBreak'),
 
   lastFileChanged: function () {
     this.get('model.lastFile').then(function () {
+      // TODO: avoid delay issue, cancel outdate schedule
       Ember.run.scheduleOnce('afterRender', this, this.afterRenderEvent);
     }.bind(this));
   }.observes('model.lastFile'),
