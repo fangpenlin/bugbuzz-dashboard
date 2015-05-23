@@ -1,5 +1,6 @@
 body {
   padding-top: 60px;
+  background-color: #eee;
 }
 @media (max-width: 979px) {
   body {
@@ -26,8 +27,35 @@ body {
 }
 
 .current-file-name {
-  position: absolute;;
+  position: absolute;
   padding: 15px;
   color: white;
   font-size: 16px;
+}
+
+.source-code-wrapper {
+  /* bottom navbar so that won't cover last few lines of code */
+  margin-bottom: 60px;
+  margin-left: 300px;
+  width: calc(100% - 290px);
+}
+
+.container {
+  width: 100%;
+}
+
+#sidebar-wrapper {
+  padding: 10px 10px;
+  background-color: #353549;
+  position: fixed;
+  left: 0;
+  top: 51px;
+  width: 280px;
+  height: calc(100% - 10px);
+  box-sizing: content-box;
+  overflow-y: scroll;
+}
+
+.variables-table {
+  color: white;
 }

@@ -1,7 +1,83 @@
-<div class="container">
-  <h2>Session {{model.id}}</h2>
+<!-- Sidebar -->
+<div id="sidebar-wrapper">
+  <table class="table variables-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">Foo</th>
+        <td>Mark</td>
+      </tr>
+      <tr>
+        <th scope="row">bar</th>
+        <td>Jacob</td>
+      </tr>
+      <tr>
+        <th scope="row">yooo</th>
+        <td>Larry</td>
+      </tr>
+      <tr>
+        <th scope="row">yooo</th>
+        <td>Larry</td>
+      </tr>
+      <tr>
+        <th scope="row">yooo</th>
+        <td>Larry</td>
+      </tr>
+      <tr>
+        <th scope="row">yooo</th>
+        <td>Larry</td>
+      </tr>
+      <tr>
+        <th scope="row">yooo</th>
+        <td>Larry</td>
+      </tr>
+      <tr>
+        <th scope="row">yooo</th>
+        <td>Larry</td>
+      </tr>
+      <tr>
+        <th scope="row">yooo</th>
+        <td>Larry</td>
+      </tr>
+      <tr>
+        <th scope="row">yooo</th>
+        <td>Larry</td>
+      </tr>
+      <tr>
+        <th scope="row">yooo</th>
+        <td>Larry</td>
+      </tr>
+      <tr>
+        <th scope="row">yooo</th>
+        <td>Larry</td>
+      </tr>
+      <tr>
+        <th scope="row">yooo</th>
+        <td>Larry</td>
+      </tr>
+      <tr>
+        <th scope="row">yooo</th>
+        <td>Larry</td>
+      </tr>
+      <tr>
+        <th scope="row">yooo</th>
+        <td>Larry</td>
+      </tr>
+      <tr>
+        <th scope="row">yooo</th>
+        <td>Larry</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<!-- /#sidebar-wrapper -->
 
-  <div>
+<div class="source-code-wrapper">
   {{#if model.lastBreak.isPending}}
     <img src="/assets/images/ajax-loader.gif">
   {{else}}
@@ -11,10 +87,9 @@
       {{highlight-js code=model.currentCode lang='python' hasLineNumbers=true}}
     {{/if}}
   {{/if}}
-  </div>
-
-  {{outlet}}
 </div>
+
+{{outlet}}
 
 <footer>
   <div class="navbar navbar-inverse navbar-fixed-bottom">
