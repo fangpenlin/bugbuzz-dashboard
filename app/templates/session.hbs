@@ -1,18 +1,20 @@
-<h2>Session {{model.id}}</h2>
+<div class="container">
+  <h2>Session {{model.id}}</h2>
 
-<div>
-{{#if model.lastBreak.isPending}}
-  <img src="/assets/images/ajax-loader.gif">
-{{else}}
-  {{#if model.lastFile.isPending}}
+  <div>
+  {{#if model.lastBreak.isPending}}
     <img src="/assets/images/ajax-loader.gif">
   {{else}}
-    {{highlight-js code=model.currentCode lang='python' hasLineNumbers=true}}
+    {{#if model.lastFile.isPending}}
+      <img src="/assets/images/ajax-loader.gif">
+    {{else}}
+      {{highlight-js code=model.currentCode lang='python' hasLineNumbers=true}}
+    {{/if}}
   {{/if}}
-{{/if}}
-</div>
+  </div>
 
-{{outlet}}
+  {{outlet}}
+</div>
 
 <footer>
   <div class="navbar navbar-inverse navbar-fixed-bottom">
