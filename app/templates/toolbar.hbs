@@ -1,15 +1,29 @@
-<li id="command-continue" data-toggle="tooltip" title="Continue (C)" {{action "resume"}}>
-  <a>{{fa-icon 'play-circle'}}</a>
-</li>
+<div id="navbar" class="collapse navbar-collapse">
+  {{#unless model.needsAccessKey}}
+    <ul class="nav navbar-nav">
+      <li id="command-continue" data-toggle="tooltip" title="Continue (C)" {{action "resume"}}>
+        <a>{{fa-icon 'play-circle'}}</a>
+      </li>
 
-<li id="command-return" data-toggle="tooltip" title="Return current function (H)" {{action "returnFunction"}}>
-  <a>{{fa-icon 'long-arrow-left'}}</a>
-</li>
+      <li id="command-return" data-toggle="tooltip" title="Return current function (H)" {{action "returnFunction"}}>
+        <a>{{fa-icon 'long-arrow-left'}}</a>
+      </li>
 
-<li id="command-next" data-toggle="tooltip" title="Next line (J)" {{action "next"}}>
-  <a>{{fa-icon 'long-arrow-down'}}</a>
-</li>
+      <li id="command-next" data-toggle="tooltip" title="Next line (J)" {{action "next"}}>
+        <a>{{fa-icon 'long-arrow-down'}}</a>
+      </li>
 
-<li id="command-step" data-toggle="tooltip" title="Next step (L)" {{action "step"}}>
-  <a>{{fa-icon 'long-arrow-right'}}</a>
-</li>
+      <li id="command-step" data-toggle="tooltip" title="Next step (L)" {{action "step"}}>
+        <a>{{fa-icon 'long-arrow-right'}}</a>
+      </li>
+    </ul>
+
+    <form class="navbar-form navbar-right" role="link" title="Sharable link to this debugging session">
+      <div class="input-group">
+        <span class="input-group-addon">{{fa-icon 'share-alt-square'}}</span>
+        {{view 'click-copy-input' class='form-control' readonly='readonly' value=accessKeyURL}}
+      </div>
+    </form>
+  {{/unless}}
+
+</div><!--/.nav-collapse -->

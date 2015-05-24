@@ -73,7 +73,8 @@ export default Ember.Controller.extend({
     if (Ember.isNone(this.get('model.accessKey'))) {
       return null;
     }
-    return this.get('target').generate(
+    var baseURL = window.location.href.split('#')[0];
+    return baseURL + this.get('target').generate(
       'session',
       this.get('model'),
       {

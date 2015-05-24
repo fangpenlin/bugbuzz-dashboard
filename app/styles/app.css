@@ -64,3 +64,9 @@ body {
   /* FIXME */
 }
 
+.navbar-form {
+  width: 400px;
+}
+  .navbar-form input {
+    width: 320px !important;
+  }
