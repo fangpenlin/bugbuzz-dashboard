@@ -14,6 +14,7 @@
     "qunit": "~1.17.1",
     "pubnub": "~3.7.10",
     "bootstrap": "~3.3.4",
-    "ember-shortcuts": "~0.0.2"
+    "ember-shortcuts": "~0.0.2",
+    "jquery-cookie": "~1.4.1"
   }
 }

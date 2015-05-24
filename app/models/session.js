@@ -15,8 +15,22 @@ export default DS.Model.extend({
 
   accessKey: null,
 
+  init: function() {
+    this._super();
+    // to see if we have 
+    var accessKey = Ember.$.cookie(this.get('accessKeyCookieKey'));
+    if (!Ember.isNone(accessKey)) {
+      this.set('accessKey', accessKey);
+      console.log('Found access key in cookie');
+    }
+  },
+
+  accessKeyCookieKey: Ember.computed('id', function () {
+    return 'session.%@.access_key'.fmt(this.get('id'));
+  }),
+
   // do we need password to decrypt this session?
-  needsAccessKey: Ember.computed('encrypted', 'accessKey', function (argument) {
+  needsAccessKey: Ember.computed('encrypted', 'accessKey', function () {
     return this.get('encrypted') && Ember.isNone(this.get('accessKey'));
   }),
 
@@ -31,6 +45,13 @@ export default DS.Model.extend({
   },
 
   accessKeyChanged: function () {
+    if (!Ember.isNone(this.get('accessKey'))) {
+      Ember.$.cookie(
+        this.get('accessKeyCookieKey'),
+        this.get('accessKey'),
+        { expires: 7 }
+      );
+    }
     // update current code as we just set access key
     this.set('currentCode', this.get('lastFile.source_code'));
   }.observes('accessKey'),
