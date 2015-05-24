@@ -27,8 +27,6 @@ export default DS.Model.extend({
       this.get('aes_iv'),
       this.get('encrypted_code')
     );
-    console.log('!! decryptedStr', decryptedStr);
-    console.log('!! validation_code', this.get('validation_code'));
     return decryptedStr === this.get('validation_code');
   },
 

@@ -6,9 +6,6 @@ var Router = Ember.Router.extend({
 });
 
 export default Router.map(function() {
-  this.resource('session', {
-    path: '/sessions/:session_id/access-key/:access_key'
-  }, function() {});
   this.resource('session', { path: '/sessions/:session_id' }, function() {});
   this.resource('file', function() {});
   this.resource('break', function() {});

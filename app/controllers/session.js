@@ -3,6 +3,9 @@ import app from '../app';
 import { normalizeURLSafeBase64 } from '../utils/base64';
 
 export default Ember.Controller.extend({
+  queryParams: {access_key: null},
+  access_key: null,
+
   modelChanged: function() {
     // TODO: unsubscribe
     app.pubnub.subscribe({
@@ -52,6 +55,7 @@ export default Ember.Controller.extend({
   needsAccessKeyChanged: function () {
     var needsAccessKey = this.get('model.needsAccessKey');
     if (!needsAccessKey) {
+      Ember.$('#session-access-key-modal').modal('hide');
       return;
     }
     Ember.run.scheduleOnce('afterRender', this, function () {
@@ -64,6 +68,36 @@ export default Ember.Controller.extend({
   }.observes('inputAccessKey'),
 
   accessKeyError: null,
+
+  accessKeyURL: Ember.computed('', function() {
+    if (Ember.isNone(this.get('model.accessKey'))) {
+      return null;
+    }
+    return this.get('target').generate(
+      'session',
+      this.get('model'),
+      {
+        queryParams: {access_key: this.get('model.accessKey')}
+      }
+    );
+  }),
+
+  paramAccessKeyChanged: function() {
+    var self = this;
+    var session = this.get('model');
+    if (Ember.isNone(session)) {
+      return;
+    }
+    var accessKey = this.get('access_key');
+    if (!Ember.isNone(accessKey)) {
+      accessKey = normalizeURLSafeBase64(accessKey);
+      if (session.validateAccessKey(accessKey)) {
+        session.set('accessKey', accessKey);
+        this.set('access_key', null);
+        self.transitionToRoute('session', session);
+      }
+    }
+  }.observes('access_key', 'model'),
 
   actions: {
     returnFunction: function(){
