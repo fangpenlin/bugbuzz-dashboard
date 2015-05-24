@@ -13,7 +13,7 @@ export default DS.Model.extend({
   localVarsArray: Ember.computed('local_vars', 'aes_iv', function () {
     // FIXME:
     var decryptedStr = decrypt_with_b64_as_string(
-      'Dk0ieYHnmNbjOoN/Q17I//+c8oEfAbGIlNTBz3YByM4=',
+      this.get('session.aesKey'),
       this.get('aes_iv'),
       this.get('local_vars')
     );

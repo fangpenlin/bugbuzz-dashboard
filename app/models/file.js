@@ -9,13 +9,11 @@ export default DS.Model.extend({
   aes_iv: DS.attr('string'),
   
   source_code: function() {
-    // FIXME:
     var decryptedStr = decrypt_with_b64_as_string(
-      'Dk0ieYHnmNbjOoN/Q17I//+c8oEfAbGIlNTBz3YByM4=',
+      this.get('session.aesKey'),
       this.get('aes_iv'),
       this.get('content')
     );
-
     return decryptedStr;
   }.property('content')
 });
