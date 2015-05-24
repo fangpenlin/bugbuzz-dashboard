@@ -7,6 +7,7 @@ export default DS.Model.extend({
   breaks: DS.hasMany('break',{ async:true }),
   href: DS.attr('string'),
   dashboard_channel: DS.attr('string'),
+  encrypted: DS.attr('string'),
 
   lastBreak: Ember.computed('breaks', function () {
     var promise = this.get('breaks').then(function (breaks) {

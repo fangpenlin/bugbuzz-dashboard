@@ -25,7 +25,7 @@ function b64ToUint6 (nChr) {
 
 }
 
-function base64DecToArr (sBase64, nBlocksSize) {
+export function base64DecToArr (sBase64, nBlocksSize) {
 
   var
     sB64Enc = sBase64.replace(/[^A-Za-z0-9\+\/]/g, ""), nInLen = sB64Enc.length,
@@ -65,7 +65,7 @@ function uint6ToB64 (nUint6) {
 
 }
 
-function base64EncArr (aBytes) {
+export function base64EncArr (aBytes) {
 
   var nMod3 = 2, sB64Enc = "";
 
@@ -85,7 +85,7 @@ function base64EncArr (aBytes) {
 
 /* UTF-8 array to DOMString and vice versa */
 
-function UTF8ArrToStr (aBytes) {
+export function UTF8ArrToStr (aBytes) {
 
   var sView = "";
 

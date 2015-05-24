@@ -37,4 +37,7 @@ app.import('vendor/highlight.js/index.js', {
   }
 });
 
+app.import('vendor/aes-arraybuffer/aes.js');
+app.import('vendor/aes-arraybuffer/crypto.js');
+
 module.exports = app.toTree();
