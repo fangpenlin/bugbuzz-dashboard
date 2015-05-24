@@ -1,6 +1,12 @@
 <div id="navbar" class="collapse navbar-collapse">
-  {{#unless model.needsAccessKey}}
-    <ul class="nav navbar-nav">
+  <ul class="nav navbar-nav">
+    <li title="BugBuzz Python debugging library">
+      <a href="https://github.com/victorlin/bugbuzz-python">{{fa-icon 'github-alt'}} Python lib</a>
+    </li>
+    <li title="Author Victor Lin">
+      <a href="https://twitter.com/victorlin">{{fa-icon 'child'}} Author</a>
+    </li>
+    {{#unless model.needsAccessKey}}
       <li id="command-continue" data-toggle="tooltip" title="Continue (C)" {{action "resume"}}>
         <a>{{fa-icon 'play-circle'}}</a>
       </li>
@@ -16,8 +22,10 @@
       <li id="command-step" data-toggle="tooltip" title="Next step (L)" {{action "step"}}>
         <a>{{fa-icon 'long-arrow-right'}}</a>
       </li>
-    </ul>
+    {{/unless}}
+  </ul>
 
+  {{#unless model.needsAccessKey}}
     <form class="navbar-form navbar-right" role="link" title="Sharable link to this debugging session">
       <div class="input-group">
         <span class="input-group-addon">{{fa-icon 'share-alt-square'}}</span>
