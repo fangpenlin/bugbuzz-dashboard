@@ -44,10 +44,10 @@
 
   <div class="source-code-wrapper">
     {{#if model.lastBreak.isPending}}
-      <img src="/assets/images/ajax-loader.gif">
+      {{fa-icon 'spinner' spin=true}}
     {{else}}
       {{#if model.lastFile.isPending}}
-        <img src="/assets/images/ajax-loader.gif">
+        {{fa-icon 'spinner' spin=true}}
       {{else}}
         {{highlight-js code=model.currentCode lang='python' hasLineNumbers=true}}
       {{/if}}
@@ -61,7 +61,7 @@
       <div class="container">
         <div class="navbar-collapse collapse" id="footer-body">
           {{#if model.lastFile.isPending}}
-            <img src="/assets/images/ajax-loader.gif">
+            <span style="color: white;">{{fa-icon 'spinner' spin=true}}</span>
           {{else}}
             <span class="current-file-name">{{model.lastFile.filename}} : {{model.lastBreak.lineno}}</span>
           {{/if}}
