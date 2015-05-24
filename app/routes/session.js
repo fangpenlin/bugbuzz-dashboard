@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import { normalizeURLSafeBase64 } from '../utils/base64';
 
 export default Ember.Route.extend({
   shortcuts: {
@@ -29,6 +30,7 @@ export default Ember.Route.extend({
     });
   },
   model: function(params) {
+    var self = this;
     return this.store.find(
       'session',
       params.session_id
@@ -36,11 +38,13 @@ export default Ember.Route.extend({
       if (session.get('encrypted')) {
         // TODO: if no key provided, transition to asking for encryption key
         // page
-        var aes_key = params.aes_key;
-        // convert URL safe base64 back to normal base64
-        aes_key = aes_key.replace(/_/g, '/');
-        aes_key = aes_key.replace(/-/g, '+');
-        session.set('aesKey', aes_key);
+        var access_key = params.access_key;
+        if (access_key !== undefined) {
+          // convert URL safe base64 back to normal base64
+          access_key = normalizeURLSafeBase64(access_key);
+          session.set('accessKey', access_key);
+          self.transitionTo('session', session);
+        }
         // TODO: validate AES key
         return session;
       }

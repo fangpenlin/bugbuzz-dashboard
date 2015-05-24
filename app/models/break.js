@@ -10,19 +10,26 @@ export default DS.Model.extend({
   aes_iv: DS.attr('string'),
 
   // local vars as an array
-  localVarsArray: Ember.computed('local_vars', 'aes_iv', function () {
-    // FIXME:
-    var decryptedStr = decrypt_with_b64_as_string(
-      this.get('session.aesKey'),
-      this.get('aes_iv'),
-      this.get('local_vars')
-    );
+  localVarsArray: Ember.computed(
+    'local_vars',
+    'aes_iv',
+    'session.accessKey',
+    function () {
+      if (Ember.isNone(this.get('session.accessKey'))) {
+        return [];
+      }
+      var decryptedStr = decrypt_with_b64_as_string(
+        this.get('session.accessKey'),
+        this.get('aes_iv'),
+        this.get('local_vars')
+      );
 
-    var arr = [];
-    var localVars = JSON.parse(decryptedStr);
-    for(var key in localVars) {
-        arr.push({key: key, value: localVars[key]});
+      var arr = [];
+      var localVars = JSON.parse(decryptedStr);
+      for(var key in localVars) {
+          arr.push({key: key, value: localVars[key]});
+      }
+      return arr;
     }
-    return arr;
-  })
+  )
 });

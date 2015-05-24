@@ -169,6 +169,12 @@ function strToUTF8Arr (sDOMStr) {
 
 }
 
+// normalize URL-safe base64 text
+export function normalizeURLSafeBase64(b64text) {
+    b64text = b64text.replace(/_/g, '/');
+    b64text = b64text.replace(/-/g, '+');
+    return b64text;
+}
 
 export function b64decode(b64text) {
   var utf8_arr = base64DecToArr(b64text);

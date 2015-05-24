@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import app from '../app';
+import { normalizeURLSafeBase64 } from '../utils/base64';
 
 export default Ember.Controller.extend({
   modelChanged: function() {
@@ -44,6 +45,22 @@ export default Ember.Controller.extend({
     }, 500);
   },
 
+  needsAccessKeyChanged: function () {
+    var needsAccessKey = this.get('model.needsAccessKey');
+    if (!needsAccessKey) {
+      return;
+    }
+    Ember.run.scheduleOnce('afterRender', this, function () {
+      Ember.$('#session-access-key-modal').modal();
+    });
+  }.observes('model.needsAccessKey'),
+
+  inputAccessKeyChanged: function () {
+    this.set('accessKeyError', null);
+  }.observes('inputAccessKey'),
+
+  accessKeyError: null,
+
   actions: {
     returnFunction: function(){
       this.get('model').returnFunc();
@@ -56,6 +73,21 @@ export default Ember.Controller.extend({
     },
     resume: function(){
       this.get('model').resume();
+    },
+    decrypt: function(){
+      var inputAccessKey = normalizeURLSafeBase64(this.get('inputAccessKey'));
+      if (Ember.isBlank(inputAccessKey)) {
+        this.set('accessKeyError', 'Cannot be blank');
+        console.log('Blank access key');
+        return;
+      }
+      if (!this.get('model').validateAccessKey(inputAccessKey)) {
+        this.set('accessKeyError', 'Bad access key');
+        console.log('Bad access key');
+        return;
+      }
+      this.get('model').set('accessKey', inputAccessKey);
+      Ember.$('#session-access-key-modal').modal('hide');
     }
   }
   });

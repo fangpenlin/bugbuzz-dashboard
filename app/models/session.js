@@ -1,13 +1,36 @@
 import Ember from 'ember';
 import DS from 'ember-data';
 import config from '../config/environment';
+import { decrypt_with_b64_as_string } from '../utils/encryption';
 
 export default DS.Model.extend({
   files: DS.hasMany('file',{ async:true }),
   breaks: DS.hasMany('break',{ async:true }),
   href: DS.attr('string'),
   dashboard_channel: DS.attr('string'),
-  encrypted: DS.attr('string'),
+  encrypted: DS.attr('boolean'),
+  aes_iv: DS.attr('string'),
+  validation_code: DS.attr('string'),
+  encrypted_code: DS.attr('string'),
+
+  accessKey: null,
+
+  // do we need password to decrypt this session?
+  needsAccessKey: Ember.computed('encrypted', 'accessKey', function (argument) {
+    return this.get('encrypted') && Ember.isNone(this.get('accessKey'));
+  }),
+
+  // validate given access key
+  validateAccessKey: function (accessKey) {
+    var decryptedStr = decrypt_with_b64_as_string(
+      accessKey,
+      this.get('aes_iv'),
+      this.get('encrypted_code')
+    );
+    console.log('!! decryptedStr', decryptedStr);
+    console.log('!! validation_code', this.get('validation_code'));
+    return decryptedStr === this.get('validation_code');
+  },
 
   lastBreak: Ember.computed('breaks', function () {
     var promise = this.get('breaks').then(function (breaks) {

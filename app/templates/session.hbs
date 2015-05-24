@@ -1,50 +1,72 @@
-<!-- Sidebar -->
-<div id="sidebar-wrapper">
-  {{#unless model.lastBreak.isPending}}
-  <table class="table variables-table">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Value</th>
-      </tr>
-    </thead>
-    <tbody>
-      {{#each var in model.lastBreak.localVarsArray}}
-      <tr>
-        <th scope="row">{{var.key}}</th>
-        <td>{{var.value}}</td>
-      </tr>
-      {{/each}}
-    </tbody>
-  </table>
-  {{/unless}}
-</div>
-<!-- /#sidebar-wrapper -->
-
-<div class="source-code-wrapper">
-  {{#if model.lastBreak.isPending}}
-    <img src="/assets/images/ajax-loader.gif">
-  {{else}}
-    {{#if model.lastFile.isPending}}
-      <img src="/assets/images/ajax-loader.gif">
-    {{else}}
-      {{highlight-js code=model.currentCode lang='python' hasLineNumbers=true}}
-    {{/if}}
-  {{/if}}
-</div>
-
-{{outlet}}
-
-<footer>
-  <div class="navbar navbar-inverse navbar-fixed-bottom">
-    <div class="container">
-      <div class="navbar-collapse collapse" id="footer-body">
-        {{#if model.lastFile.isPending}}
-          <img src="/assets/images/ajax-loader.gif">
-        {{else}}
-          <span class="current-file-name">{{model.lastFile.filename}} : {{model.lastBreak.lineno}}</span>
-        {{/if}}
+{{#if model.needsAccessKey}}
+  <!-- Modal -->
+  <div class="modal fade modal-dialog-center" id="session-access-key-modal" tabindex="-1" role="dialog" aria-labelledby="session-access-key-modal-label" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="session-access-key-modal-label">Needs access key for decrypting this debugging session</h4>
+        </div>
+        <div class="modal-body">
+          <div {{bind-attr class=':input-group accessKeyError:has-error'}}>
+            <span class="input-group-addon">{{fa-icon 'key'}}</span>
+            {{input value=inputAccessKey class='form-control' placeholder='Input access key here' viewName='access_key' spellcheck=false autocomplete='off'}}
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" {{action 'decrypt'}}>{{fa-icon 'unlock-alt'}} Decrypt</button>
+        </div>
       </div>
     </div>
   </div>
-</footer>
+{{else}}
+  <!-- Sidebar -->
+  <div id="sidebar-wrapper">
+    {{#unless model.lastBreak.isPending}}
+    <table class="table variables-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each var in model.lastBreak.localVarsArray}}
+        <tr>
+          <th scope="row">{{var.key}}</th>
+          <td>{{var.value}}</td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+    {{/unless}}
+  </div>
+  <!-- /#sidebar-wrapper -->
+
+  <div class="source-code-wrapper">
+    {{#if model.lastBreak.isPending}}
+      <img src="/assets/images/ajax-loader.gif">
+    {{else}}
+      {{#if model.lastFile.isPending}}
+        <img src="/assets/images/ajax-loader.gif">
+      {{else}}
+        {{highlight-js code=model.currentCode lang='python' hasLineNumbers=true}}
+      {{/if}}
+    {{/if}}
+  </div>
+
+  {{outlet}}
+
+  <footer>
+    <div class="navbar navbar-inverse navbar-fixed-bottom">
+      <div class="container">
+        <div class="navbar-collapse collapse" id="footer-body">
+          {{#if model.lastFile.isPending}}
+            <img src="/assets/images/ajax-loader.gif">
+          {{else}}
+            <span class="current-file-name">{{model.lastFile.filename}} : {{model.lastBreak.lineno}}</span>
+          {{/if}}
+        </div>
+      </div>
+    </div>
+  </footer>
+{{/if}}
