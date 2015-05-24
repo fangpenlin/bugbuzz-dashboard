@@ -51,7 +51,7 @@ body {
   left: 0;
   top: 51px;
   width: 340px;
-  height: calc(100% - 10px);
+  height: calc(100% - 10px * 2 - 50px * 2);
   box-sizing: content-box;
   overflow-y: scroll;
 }
