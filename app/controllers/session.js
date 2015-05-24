@@ -32,6 +32,10 @@ export default Ember.Controller.extend({
     }.bind(this));
   }.observes('model.lastFile'),
 
+  currentCodeChanged: function () {
+    Ember.run.scheduleOnce('afterRender', this, this.afterRenderEvent);
+  }.observes('model.currentCode'),
+
   afterRenderEvent: function () {
     Ember.$('.line-highlight').removeClass('line-highlight');
     var lineno = this.get('model.lastBreak').get('lineno');

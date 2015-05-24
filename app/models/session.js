@@ -32,6 +32,11 @@ export default DS.Model.extend({
     return decryptedStr === this.get('validation_code');
   },
 
+  accessKeyChanged: function () {
+    // update current code as we just set access key
+    this.set('currentCode', this.get('lastFile.source_code'));
+  }.observes('accessKey'),
+
   lastBreak: Ember.computed('breaks', function () {
     var promise = this.get('breaks').then(function (breaks) {
       // TODO: what if no break available?
