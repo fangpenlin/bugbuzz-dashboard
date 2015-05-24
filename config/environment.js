@@ -21,10 +21,10 @@ module.exports = function(environment) {
 
   ENV.contentSecurityPolicy = {
     'default-src': "'none'",
-    'script-src': "'self'",
+    'script-src': "'self' www.google-analytics.com 'sha256-5teGTj2iJc779Jn9j3K8oi2xqrvqgNpTapnxrXAIIts='",
     'font-src': "'self' https://maxcdn.bootstrapcdn.com",
     'connect-src': "'self' http://*.pubnub.com",
-    'img-src': "'self'",
+    'img-src': "'self' www.google-analytics.com",
     'style-src': "'self' 'unsafe-inline'", // Allow inline styles and loaded CSS from http://fonts.googleapis.com 
     'media-src': "'self'"
   };
