@@ -7,6 +7,12 @@ See also https://github.com/fangpenlin/bugbuzz-python
 This README outlines the details of collaborating on this Ember application.
 A short introduction of this app could easily go here.
 
+
+## Relative projects
+
+ - [Backend API server project](https://github.com/victorlin/bugbuzz-api)
+ - [Python debugger library project](https://github.com/victorlin/bugbuzz-python)
+
 ## Prerequisites
 
 You will need the following things properly installed on your computer.
