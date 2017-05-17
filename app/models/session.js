@@ -17,7 +17,7 @@ export default DS.Model.extend({
 
   init: function() {
     this._super();
-    // to see if we have 
+    // to see if we have
     var accessKey = Ember.$.cookie(this.get('accessKeyCookieKey'));
     if (!Ember.isNone(accessKey)) {
       this.set('accessKey', accessKey);
@@ -26,7 +26,7 @@ export default DS.Model.extend({
   },
 
   accessKeyCookieKey: Ember.computed('id', function () {
-    return 'session.%@.access_key'.fmt(this.get('id'));
+    return `session.${this.get('id')}.access_key`;
   }),
 
   // do we need password to decrypt this session?
@@ -61,7 +61,7 @@ export default DS.Model.extend({
       // TODO: what if no break available?
       return breaks.objectAt(breaks.length - 1);
     });
-    return  DS.PromiseObject.create({ promise: promise });
+    return DS.PromiseObject.create({ promise: promise });
   }),
 
   lastFile: Ember.computed('lastBreak', function () {
