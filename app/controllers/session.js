@@ -12,10 +12,10 @@ export default Ember.Controller.extend({
         channel: this.get('model.dashboard_channel'),
         message: function(message){
           if ('file' in message) {
-            this.store.push('file', this.store.normalize('file', message['file']));
+            this.store.push(this.store.normalize('file', message['file']));
           }
           if ('break' in message) {
-            this.store.push('break', this.store.normalize('break', message['break']));
+            this.store.push(this.store.normalize('break', message['break']));
           }
         }.bind(this)
     });
