@@ -7,7 +7,7 @@
           <h4 class="modal-title" id="session-access-key-modal-label">Needs access key for decrypting this debugging session</h4>
         </div>
         <div class="modal-body">
-          <div {{bind-attr class=':input-group accessKeyError:has-error'}}>
+          <div class="input-group {{if accessKeyError "has-error"}}">
             <span class="input-group-addon">{{fa-icon 'key'}}</span>
             {{input value=inputAccessKey class='form-control' placeholder='Input access key here' viewName='access_key' spellcheck=false autocomplete='off'}}
           </div>
