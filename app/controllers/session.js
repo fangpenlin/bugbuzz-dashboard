@@ -42,7 +42,7 @@ export default Ember.Controller.extend({
   afterRenderEvent: function () {
     Ember.$('.line-highlight').removeClass('line-highlight');
     var lineno = this.get('model.lastBreak').get('lineno');
-    var currentLine = Ember.$('#line-%@'.fmt(lineno));
+    var currentLine = Ember.$(`#line-${lineno}`);
     if (!currentLine.length) {
       return;
     }

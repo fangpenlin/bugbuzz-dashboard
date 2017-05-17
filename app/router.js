@@ -6,7 +6,7 @@ var Router = Ember.Router.extend({
 });
 
 export default Router.map(function() {
-  this.resource('session', { path: '/sessions/:session_id' }, function() {});
-  this.resource('file', function() {});
-  this.resource('break', function() {});
+  this.route('session', { path: '/sessions/:session_id' }, function() {});
+  this.route('file', function() {});
+  this.route('break', function() {});
 });
