@@ -29,7 +29,7 @@
     <form class="navbar-form navbar-right" role="link" title="Sharable link to this debugging session">
       <div class="input-group">
         <span class="input-group-addon">{{fa-icon 'share-alt-square'}}</span>
-        {{view 'click-copy-input' class='form-control' readonly='readonly' value=accessKeyURL}}
+        {{click-copy-input value=accessKeyURL}}
       </div>
     </form>
   {{/unless}}

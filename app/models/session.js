@@ -61,7 +61,7 @@ export default DS.Model.extend({
       // TODO: what if no break available?
       return breaks.objectAt(breaks.length - 1);
     });
-    return  DS.PromiseObject.create({ promise: promise });
+    return DS.PromiseObject.create({ promise: promise });
   }),
 
   lastFile: Ember.computed('lastBreak', function () {
