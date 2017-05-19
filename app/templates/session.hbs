@@ -30,7 +30,7 @@
         </tr>
       </thead>
       <tbody>
-        {{#each var in model.lastBreak.localVarsArray}}
+        {{#each model.lastBreak.localVarsArray key="key" as |var| }}
         <tr>
           <th scope="row">{{var.key}}</th>
           <td>{{var.value}}</td>
